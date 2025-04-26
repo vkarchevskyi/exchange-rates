@@ -1,0 +1,21 @@
+{
+    "name": "vkarchevskyi/exchange-rates",
+    "description": "Library, which provides a convenient access for exchange rates of Ukrainian bankss.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "vkarchevskyi",
+            "email": "vkarchevskyi10@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^12.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vkarchevskyi\\SinoptikUaParser\\": "src/"
+        }
+    }
+}
