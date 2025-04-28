@@ -15,7 +15,7 @@ use Vkarchevskyi\ExchangeRates\Service\FetchService;
 /**
  * @see https://monobank.ua/api-docs/monobank/publichni-dani/get--bank--currency
  */
-final readonly class MonobankRepository implements BankRepositoryInterface
+final readonly class MonobankRepository
 {
     public function __construct(
         private FetchService $fetch,
@@ -31,12 +31,15 @@ final readonly class MonobankRepository implements BankRepositoryInterface
      * @throws Throwable
      * @throws ApiException
      */
-    public function getRates(): array
+    public function getData(): array
     {
-        return $this->serializer->deserialize(
+        /** @var MonobankApiResource[] $data */
+        $data = $this->serializer->deserialize(
             $this->fetch->run($this->endpoint),
             MonobankApiResource::class . '[]',
             'json'
         );
+
+        return $data;
     }
 }

@@ -13,7 +13,7 @@ use Vkarchevskyi\ExchangeRates\Data\PrivatbankApiResource;
 use Vkarchevskyi\ExchangeRates\Exceptions\ApiException;
 use Vkarchevskyi\ExchangeRates\Service\FetchService;
 
-final readonly class PrivatbankRepository implements BankRepositoryInterface
+final readonly class PrivatbankRepository
 {
     public function __construct(
         private FetchService $fetch,
@@ -24,12 +24,12 @@ final readonly class PrivatbankRepository implements BankRepositoryInterface
     }
 
     /**
-     * @return PrivatbankApiResource[]
+     * @return PrivatbankApiResource
      * @throws ConnectionException
      * @throws Throwable
      * @throws ApiException
      */
-    public function getRates(): array
+    public function getData(): PrivatbankApiResource
     {
         $endpoint = sprintf('%s?date=%s', $this->endpoint, Date::now()->format('d.m.Y'));
 
