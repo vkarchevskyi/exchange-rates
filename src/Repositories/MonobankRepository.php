@@ -8,7 +8,7 @@ use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use JsonException;
-use Vkarchevskyi\ExchangeRates\Resources\MonobankApiResource;
+use Vkarchevskyi\ExchangeRates\Resources\API\MonobankApiResource;
 use Vkarchevskyi\ExchangeRates\Exceptions\ApiException;
 use Vkarchevskyi\ExchangeRates\Service\FetchService;
 

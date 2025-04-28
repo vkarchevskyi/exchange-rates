@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Vkarchevskyi\ExchangeRates\Resources\API;
 
 use Spatie\LaravelData\Resource;
-use Vkarchevskyi\ExchangeRates\Resources\Privatbank\PrivatbankApiRateResource;
+use Vkarchevskyi\ExchangeRates\Resources\API\Privatbank\PrivatbankApiRateResource;
 
 final class PrivatbankApiResource extends Resource
 {
