@@ -6,10 +6,9 @@ namespace Vkarchevskyi\ExchangeRates\Repositories;
 
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Config;
-use Symfony\Component\Serializer\SerializerInterface;
-use Throwable;
 use Vkarchevskyi\ExchangeRates\Data\MonobankApiResource;
 use Vkarchevskyi\ExchangeRates\Exceptions\ApiException;
+use Vkarchevskyi\ExchangeRates\Factories\SerializerFactory;
 use Vkarchevskyi\ExchangeRates\Service\FetchService;
 
 /**
@@ -19,20 +18,19 @@ final readonly class MonobankRepository
 {
     public function __construct(
         private FetchService $fetch,
-        private SerializerInterface $serializer,
+        private SerializerFactory $factory,
     ) {
     }
 
     /**
      * @return MonobankApiResource[]
      * @throws ConnectionException
-     * @throws Throwable
      * @throws ApiException
      */
     public function getData(): array
     {
         /** @var MonobankApiResource[] $data */
-        $data = $this->serializer->deserialize(
+        $data = $this->factory->build()->deserialize(
             $this->fetch->run(Config::string('exchange-rates.banks.monobank.endpoint')),
             MonobankApiResource::class . '[]',
             'json'
