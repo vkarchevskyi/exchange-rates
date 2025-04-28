@@ -1,0 +1,8 @@
+includes:
+    - vendor/nesbot/carbon/extension.neon
+
+parameters:
+    paths:
+        - src/
+
+    level: 10
