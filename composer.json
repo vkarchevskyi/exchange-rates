@@ -11,11 +11,17 @@
     ],
     "require": {
         "php": "^8.2",
-        "illuminate/support": "^12.10"
+        "illuminate/support": "^12.10",
+        "illuminate/contracts": "^12.10",
+        "alcohol/iso4217": "^4.2"
     },
     "autoload": {
         "psr-4": {
-            "Vkarchevskyi\\SinoptikUaParser\\": "src/"
+            "Vkarchevskyi\\ExchangeRates\\": "src/"
         }
+    },
+    "require-dev": {
+        "laravel/pint": "^1.22",
+        "larastan/larastan": "^3.0"
     }
 }
