@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vkarchevskyi\ExchangeRates\Resources\Privatbank;
+namespace Vkarchevskyi\ExchangeRates\Resources\API\Privatbank;
 
 final readonly class PrivatbankApiRateResource
 {

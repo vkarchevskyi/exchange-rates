@@ -1,6 +1,6 @@
 {
     "name": "vkarchevskyi/exchange-rates",
-    "description": "Library, which provides a convenient access for exchange rates of Ukrainian bankss.",
+    "description": "Library, which provides a convenient access for exchange rates of Ukrainian banks.",
     "type": "library",
     "license": "MIT",
     "authors": [
