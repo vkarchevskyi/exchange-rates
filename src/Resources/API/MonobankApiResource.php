@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vkarchevskyi\ExchangeRates\Data;
+namespace Vkarchevskyi\ExchangeRates\Resources;
 
 use Spatie\LaravelData\Resource;
 

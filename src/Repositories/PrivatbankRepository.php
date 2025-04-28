@@ -8,7 +8,7 @@ use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Date;
 use Throwable;
-use Vkarchevskyi\ExchangeRates\Data\PrivatbankApiResource;
+use Vkarchevskyi\ExchangeRates\Resources\PrivatbankApiResource;
 use Vkarchevskyi\ExchangeRates\Exceptions\ApiException;
 use Vkarchevskyi\ExchangeRates\Service\FetchService;
 
