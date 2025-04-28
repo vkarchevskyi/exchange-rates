@@ -9,7 +9,7 @@ return [
         ],
 
         'privatbank' => [
-            'base_url' => 'https://api.privatbank.ua/p24api/exchange_rates',
+            'endpoint' => 'https://api.privatbank.ua/p24api/exchange_rates',
         ],
     ],
 

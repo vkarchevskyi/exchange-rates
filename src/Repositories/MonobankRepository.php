@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Vkarchevskyi\ExchangeRates\Repositories;
 
-use Illuminate\Container\Attributes\Config;
 use Illuminate\Http\Client\ConnectionException;
+use Illuminate\Support\Facades\Config;
 use Symfony\Component\Serializer\SerializerInterface;
 use Throwable;
 use Vkarchevskyi\ExchangeRates\Data\MonobankApiResource;
@@ -19,8 +19,6 @@ final readonly class MonobankRepository
 {
     public function __construct(
         private FetchService $fetch,
-        #[Config('exchange-rates.banks.monobank.endpoint')]
-        private string $endpoint,
         private SerializerInterface $serializer,
     ) {
     }
@@ -35,7 +33,7 @@ final readonly class MonobankRepository
     {
         /** @var MonobankApiResource[] $data */
         $data = $this->serializer->deserialize(
-            $this->fetch->run($this->endpoint),
+            $this->fetch->run(Config::string('exchange-rates.banks.monobank.endpoint')),
             MonobankApiResource::class . '[]',
             'json'
         );
