@@ -8,7 +8,6 @@ use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Config;
 use Vkarchevskyi\ExchangeRates\Data\MonobankApiResource;
 use Vkarchevskyi\ExchangeRates\Exceptions\ApiException;
-use Vkarchevskyi\ExchangeRates\Factories\SerializerFactory;
 use Vkarchevskyi\ExchangeRates\Service\FetchService;
 
 /**
@@ -16,10 +15,8 @@ use Vkarchevskyi\ExchangeRates\Service\FetchService;
  */
 final readonly class MonobankRepository
 {
-    public function __construct(
-        private FetchService $fetch,
-        private SerializerFactory $factory,
-    ) {
+    public function __construct(private FetchService $fetch)
+    {
     }
 
     /**
@@ -29,13 +26,8 @@ final readonly class MonobankRepository
      */
     public function getData(): array
     {
-        /** @var MonobankApiResource[] $data */
-        $data = $this->factory->build()->deserialize(
-            $this->fetch->run(Config::string('exchange-rates.banks.monobank.endpoint')),
-            MonobankApiResource::class . '[]',
-            'json'
+        return MonobankApiResource::collect(
+            $this->fetch->run(Config::string('exchange-rates.banks.monobank.endpoint'))
         );
-
-        return $data;
     }
 }

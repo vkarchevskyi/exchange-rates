@@ -10,15 +10,12 @@ use Illuminate\Support\Facades\Date;
 use Throwable;
 use Vkarchevskyi\ExchangeRates\Data\PrivatbankApiResource;
 use Vkarchevskyi\ExchangeRates\Exceptions\ApiException;
-use Vkarchevskyi\ExchangeRates\Factories\SerializerFactory;
 use Vkarchevskyi\ExchangeRates\Service\FetchService;
 
 final readonly class PrivatbankRepository
 {
-    public function __construct(
-        private FetchService $fetch,
-        private SerializerFactory $factory,
-    ) {
+    public function __construct(private FetchService $fetch)
+    {
     }
 
     /**
@@ -35,10 +32,6 @@ final readonly class PrivatbankRepository
             Date::now()->format('d.m.Y')
         );
 
-        return $this->factory->build()->deserialize(
-            $this->fetch->run($endpoint),
-            PrivatbankApiResource::class,
-            'json'
-        );
+        return PrivatbankApiResource::from($this->fetch->run($endpoint));
     }
 }
