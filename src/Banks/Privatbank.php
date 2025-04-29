@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vkarchevskyi\ExchangeRates;
+namespace Vkarchevskyi\ExchangeRates\Banks;
 
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Collection;
