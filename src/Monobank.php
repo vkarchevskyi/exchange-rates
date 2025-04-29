@@ -49,7 +49,7 @@ final readonly class Monobank implements BankInterface
                     (float)$rate->rateSell
                 )
             )
-            ->values();
+            ->all();
     }
 
     private function getCurrencyFromCode(int $code): string

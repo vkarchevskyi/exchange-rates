@@ -41,6 +41,6 @@ final readonly class Privatbank implements BankInterface
                     (float)$rate->saleRate
                 )
             )
-            ->values();
+            ->all();
     }
 }
