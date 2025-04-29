@@ -7,7 +7,7 @@ namespace Vkarchevskyi\ExchangeRates\Repositories;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Date;
-use Throwable;
+use JsonException;
 use Vkarchevskyi\ExchangeRates\DataMapper\PrivatbankDataMapper;
 use Vkarchevskyi\ExchangeRates\Resources\API\PrivatbankApiResource;
 use Vkarchevskyi\ExchangeRates\Exceptions\ApiException;
@@ -22,8 +22,8 @@ final readonly class PrivatbankRepository
     /**
      * @return PrivatbankApiResource
      * @throws ConnectionException
-     * @throws Throwable
      * @throws ApiException
+     * @throws JsonException
      */
     public function getData(): PrivatbankApiResource
     {
