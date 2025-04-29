@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Vkarchevskyi\ExchangeRates\Resources\API;
 
-use Spatie\LaravelData\Resource;
-
-final class MonobankApiResource extends Resource
+final class MonobankApiResource
 {
     public function __construct(
         public int $currencyCodeA,

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Vkarchevskyi\ExchangeRates\Repositories;
 
 use Illuminate\Http\Client\ConnectionException;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use JsonException;
+use Vkarchevskyi\ExchangeRates\DataMapper\MonobankDataMapper;
 use Vkarchevskyi\ExchangeRates\Resources\API\MonobankApiResource;
 use Vkarchevskyi\ExchangeRates\Exceptions\ApiException;
 use Vkarchevskyi\ExchangeRates\Service\FetchService;
@@ -17,7 +17,7 @@ use Vkarchevskyi\ExchangeRates\Service\FetchService;
  */
 final readonly class MonobankRepository
 {
-    public function __construct(private FetchService $fetch)
+    public function __construct(private FetchService $fetch, private MonobankDataMapper $dataMapper)
     {
     }
 
@@ -29,16 +29,8 @@ final readonly class MonobankRepository
      */
     public function getData(): array
     {
-        /** @var list<object> $decodedData */
-        $decodedData = json_decode(
-            $this->fetch->run(Config::string('exchange-rates.banks.monobank.endpoint')),
-            true,
-            flags: JSON_THROW_ON_ERROR
+        return $this->dataMapper->map(
+            $this->fetch->run(Config::string('exchange-rates.banks.monobank.endpoint'))
         );
-
-        /** @var Collection<int, MonobankApiResource> $dataCollection */
-        $dataCollection = MonobankApiResource::collect($decodedData, Collection::class);
-
-        return $dataCollection->all();
     }
 }

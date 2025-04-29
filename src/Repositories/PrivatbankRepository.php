@@ -8,13 +8,14 @@ use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Date;
 use Throwable;
+use Vkarchevskyi\ExchangeRates\DataMapper\PrivatbankDataMapper;
 use Vkarchevskyi\ExchangeRates\Resources\API\PrivatbankApiResource;
 use Vkarchevskyi\ExchangeRates\Exceptions\ApiException;
 use Vkarchevskyi\ExchangeRates\Service\FetchService;
 
 final readonly class PrivatbankRepository
 {
-    public function __construct(private FetchService $fetch)
+    public function __construct(private FetchService $fetch, private PrivatbankDataMapper $dataMapper)
     {
     }
 
@@ -32,6 +33,6 @@ final readonly class PrivatbankRepository
             Date::now()->format('d.m.Y')
         );
 
-        return PrivatbankApiResource::from($this->fetch->run($endpoint));
+        return $this->dataMapper->map($this->fetch->run($endpoint));
     }
 }

@@ -13,8 +13,7 @@
         "php": "^8.2",
         "illuminate/support": "^12.10",
         "illuminate/contracts": "^12.10",
-        "alcohol/iso4217": "^4.2",
-        "spatie/laravel-data": "^4.15"
+        "alcohol/iso4217": "^4.2"
     },
     "autoload": {
         "psr-4": {
