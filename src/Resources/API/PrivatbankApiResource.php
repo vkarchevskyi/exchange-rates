@@ -14,7 +14,7 @@ final readonly class PrivatbankApiResource
     public function __construct(
         public string $date,
         public string $bank,
-        public string $baseCurrency,
+        public int $baseCurrency,
         public string $baseCurrencyLit,
         public array $exchangeRate,
     ) {
