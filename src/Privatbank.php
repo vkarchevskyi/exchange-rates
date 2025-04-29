@@ -30,6 +30,7 @@ final readonly class Privatbank implements BankInterface
         return (new Collection($this->repository->getData()->exchangeRate))
             ->filter(
                 static fn (PrivatbankApiRateResource $rate): bool => isset($rate->purchaseRate)
+                    && isset($rate->saleRate)
                     && in_array($rate->currency, $currencies, true)
             )
             ->map(
@@ -40,6 +41,6 @@ final readonly class Privatbank implements BankInterface
                     (float)$rate->saleRate
                 )
             )
-            ->all();
+            ->values();
     }
 }
