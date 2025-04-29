@@ -11,7 +11,6 @@ use Vkarchevskyi\ExchangeRates\Exceptions\ApiException;
 use Vkarchevskyi\ExchangeRates\Interfaces\BankInterface;
 use Vkarchevskyi\ExchangeRates\Repositories\PrivatbankRepository;
 use Vkarchevskyi\ExchangeRates\Resources\API\Privatbank\PrivatbankApiRateResource;
-use Vkarchevskyi\ExchangeRates\Resources\API\PrivatbankApiResource;
 use Vkarchevskyi\ExchangeRates\Resources\ExchangeRateResource;
 
 final readonly class Privatbank implements BankInterface
@@ -22,7 +21,6 @@ final readonly class Privatbank implements BankInterface
 
     /**
      * @inheritDoc
-     * @return PrivatbankApiResource
      * @throws ConnectionException
      * @throws ApiException
      * @throws JsonException
@@ -31,14 +29,15 @@ final readonly class Privatbank implements BankInterface
     {
         return (new Collection($this->repository->getData()->exchangeRate))
             ->filter(
-                static fn (PrivatbankApiRateResource $rate): bool => in_array($rate->currency, $currencies, true)
+                static fn (PrivatbankApiRateResource $rate): bool => isset($rate->purchaseRate)
+                    && in_array($rate->currency, $currencies, true)
             )
             ->map(
                 static fn (PrivatbankApiRateResource $rate): ExchangeRateResource => new ExchangeRateResource(
                     $rate->currency,
                     $rate->baseCurrency,
-                    $rate->purchaseRate,
-                    $rate->saleRate
+                    (float)$rate->purchaseRate,
+                    (float)$rate->saleRate
                 )
             )
             ->all();

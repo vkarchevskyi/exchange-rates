@@ -29,8 +29,8 @@ final readonly class PrivatbankDataMapper
                     $rate->currency,
                     $rate->saleRateNB,
                     $rate->purchaseRateNB,
-                    $rate->saleRate,
-                    $rate->purchaseRate,
+                    $rate->saleRate ?? null,
+                    $rate->purchaseRate ?? null,
                 ),
                 $data->exchangeRate
             ),

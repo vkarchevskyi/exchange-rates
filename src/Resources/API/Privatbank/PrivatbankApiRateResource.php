@@ -11,8 +11,8 @@ final readonly class PrivatbankApiRateResource
         public string $currency,
         public float $saleRateNB,
         public float $purchaseRateNB,
-        public float $saleRate,
-        public float $purchaseRate,
+        public ?float $saleRate,
+        public ?float $purchaseRate,
     ) {
     }
 }
